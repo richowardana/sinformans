@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Bantuan;
 use App\Models\DetailBantuan;
 use App\Models\DetailKeluarga;
+use App\Models\JenisBantuan;
 use App\Models\Keluarga;
 use App\Models\Penduduk;
 use App\Models\User;
@@ -30,8 +31,8 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Penduduk::factory(40)->create();
         Keluarga::factory(10)->create();
-        Bantuan::factory(5)->create();
-        DetailBantuan::factory(10)->create();
+        JenisBantuan::factory(3)->create();
         DetailKeluarga::factory(2)->create();
+        DetailBantuan::factory(2)->create();
     }
 }

@@ -3,11 +3,13 @@
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\DetailBantuanController;
 use App\Http\Controllers\DetailKeluargaController;
+use App\Http\Controllers\JenisBantuanController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Bantuan;
+use App\Models\DetailBantuan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,8 +52,8 @@ Route::get('/anggotaKeluarga/{no_kk}', [KeluargaController::class, 'anggotaKelua
 //ROUTE DETAIL KELUARGA
 Route::resource('/detailKeluarga', DetailKeluargaController::class)->middleware('auth');
 
-// ROUTE BANTUAN
-Route::resource('/bantuan', BantuanController::class)->middleware('auth');
+// ROUTE JENIS BANTUAN
+Route::resource('/jenisBantuan', JenisBantuanController::class)->middleware('auth');
 
-// ROUTE DETAIL BANTUAN KELUARGA
-Route::resource('/detailbantuankel', DetailBantuanController::class)->middleware('auth');
+// ROUTE DETAIL BANTUAN
+Route::resource('/detailBantuan', DetailBantuanController::class)->middleware('auth');

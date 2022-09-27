@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('bantuan', 20);
             $table->enum('penerima', ['Individu', 'Keluarga']);
             $table->enum('tahapan', [1, 2]);
-            $table->integer('tahap1')->nullable();
-            $table->integer('tahap2')->nullable();
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->timestamps();

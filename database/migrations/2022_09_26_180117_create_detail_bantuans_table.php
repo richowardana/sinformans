@@ -21,7 +21,8 @@ return new class extends Migration
             $table->date('tahap_2')->nullable();
             $table->timestamps();
 
-            $table->foreign('keluarga_id')->references('id')->on('keluargas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('keluarga_id')->references('id')->on('keluargas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('bantuan_id')->references('id')->on('jenis_bantuans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

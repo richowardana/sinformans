@@ -38,16 +38,17 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('bantuan*') ? '' : 'collapsed' }}" data-bs-target="#bantuanSosial"
-                data-bs-toggle="collapse" href="#">
+            <a class="nav-link {{ Request::is('jenisBantuan*') || Request::is('detailBantuan*') ? '' : 'collapsed' }}"
+                data-bs-target="#bantuanSosial" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i>
                 <span>Bantuan</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="bantuanSosial" class="nav-content {{ Request::is('bantuan*') ? '' : 'collapse' }} "
+            <ul id="bantuanSosial"
+                class="nav-content {{ Request::is('jenisBantuan*') || Request::is('detailBantuan*') ? '' : 'collapse' }} "
                 data-bs-parent="#bantuanSosial">
                 <li>
-                    <a href="/detailbantuan">
+                    <a href="/detailBantuan" class="{{ Request::is('detailBantuan*') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i>
                         <span>Penerima Per-keluarga</span>
                     </a>
@@ -59,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/bantuan" class="{{ Request::is('bantuan*') ? 'active' : '' }}">
+                    <a href="/jenisBantuan" class="{{ Request::is('jenisBantuan*') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i>
                         <span>Jenis Bantuan</span>
                     </a>

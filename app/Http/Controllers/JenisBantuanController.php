@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisBantuan;
 use App\Http\Requests\StoreJenisBantuanRequest;
 use App\Http\Requests\UpdateJenisBantuanRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JenisBantuanController extends Controller
 {
@@ -15,7 +16,12 @@ class JenisBantuanController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Sinforman | Bantuan',
+            'jenisBantuans' => JenisBantuan::all()
+        ];
+        // dd($data);
+        return view('dashboard.bantuan.jenis_bantuan.bantuan', $data);
     }
 
     /**
@@ -25,7 +31,11 @@ class JenisBantuanController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Sinforman | Tambah Data Bantuan',
+        ];
+
+        return view('dashboard.bantuan.jenis_bantuan.tambahBantuan', $data);
     }
 
     /**
@@ -36,7 +46,16 @@ class JenisBantuanController extends Controller
      */
     public function store(StoreJenisBantuanRequest $request)
     {
-        //
+        $validated = $request->validate([
+            "bantuan" => "required|regex:/^[\pL\s]+$/u",
+            "tahapan" => "required",
+            "tgl_mulai" => "required",
+            "tgl_selesai" => "required",
+        ]);
+
+        JenisBantuan::create($validated);
+        Alert::success('Done', 'Data has ben saved');
+        return redirect('/jenisBantuan');
     }
 
     /**
@@ -58,7 +77,12 @@ class JenisBantuanController extends Controller
      */
     public function edit(JenisBantuan $jenisBantuan)
     {
-        //
+        $data = [
+            'title' => 'Sinforman | Edit Data Bantuan',
+            'jenisBantuan' => $jenisBantuan
+        ];
+        // dd($data);
+        return view('dashboard.bantuan.jenis_bantuan.editBantuan', $data);
     }
 
     /**
@@ -70,7 +94,18 @@ class JenisBantuanController extends Controller
      */
     public function update(UpdateJenisBantuanRequest $request, JenisBantuan $jenisBantuan)
     {
-        //
+
+
+        $validated = $request->validate([
+            "bantuan" => "required|regex:/^[\pL\s]+$/u|alpha_num",
+            "tahapan" => "required",
+            "tgl_mulai" => "required",
+            "tgl_selesai" => "required",
+        ]);
+
+        JenisBantuan::where('id', $jenisBantuan->id)->update($validated);
+        Alert::toast('Data has ben updated', 'success');
+        return redirect('/jenisBantuan');
     }
 
     /**
@@ -81,6 +116,8 @@ class JenisBantuanController extends Controller
      */
     public function destroy(JenisBantuan $jenisBantuan)
     {
-        //
+        JenisBantuan::destroy($jenisBantuan->id);
+        Alert::success('Done', 'Data has ben saved');
+        return redirect('/jenisBantuan');
     }
 }

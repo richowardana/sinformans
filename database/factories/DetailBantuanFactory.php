@@ -17,8 +17,8 @@ class DetailBantuanFactory extends Factory
     public function definition()
     {
         return [
-            'keluarga_id' => $this->faker->numberBetween(1, 10),
-            'bantuan_id' => $this->faker->numberBetween(1, 5),
+            'keluarga_id' => $this->faker->numberBetween(1, 2),
+            'bantuan_id' => $this->faker->numberBetween(1, 2),
             'tahap_1' => $this->faker->date(),
             'tahap_2' => $this->faker->date(),
         ];

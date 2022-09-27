@@ -15,4 +15,9 @@ class Keluarga extends Model
     {
         return 'no_kk';
     }
+
+    public function DetailBantuan()
+    {
+        return $this->hasMany(DetailBantuan::class);
+    }
 }

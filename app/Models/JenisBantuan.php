@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class JenisBantuan extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+
+    public function DetailBantuan()
+    {
+        return $this->hasMany(DetailBantuan::class);
+    }
 }
