@@ -33,7 +33,7 @@
                 <h5 class="card-title">Keluarga <span>| Total</span></h5>
                 <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i
-                            class="bi bi-person-fill" style="font-size: 2em"></i></div>
+                            class="bi bi-people-fill" style="font-size: 2em"></i></div>
                     <div class="ps-3">
                         <h4>{{ $keluargas }} Keluarga</h4>
                     </div>
@@ -47,7 +47,7 @@
                 <h5 class="card-title">Penerima Bantuan <span>| Total</span></h5>
                 <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i
-                            class="bi bi-person-fill" style="font-size: 2em"></i></div>
+                            class="bi bi-archive-fill" style="font-size: 2em"></i></div>
                     <div class="ps-3">
                         <h4>{{ $bantuans }} Penerima</h4>
                     </div>
