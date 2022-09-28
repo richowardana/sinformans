@@ -152,4 +152,16 @@ Status = $penduduk->status
         Alert::toast('Data has ben deleted', 'success');
         return redirect('/penduduk');
     }
+
+    public function cetak()
+    {
+        $data =
+            [
+                'title' => 'Cetak Penduduk',
+                'penduduks' => Penduduk::all(),
+                'qrcode' => QrCode::eye('circle')->size(150)->generate('TTD, IMAM SYAHRONI (ALPHA 2022) SISTEM INFORMASI 2018, Untuk penduduk')
+            ];
+
+        return view('cetak.cetakPenduduk', $data);
+    }
 }

@@ -6,10 +6,14 @@ use App\Http\Requests\StoreDetailKeluargaRequest;
 use App\Models\Keluarga;
 use App\Http\Requests\StoreKeluargaRequest;
 use App\Http\Requests\UpdateKeluargaRequest;
+use App\Models\DetailBantuan;
 use App\Models\DetailKeluarga;
+use App\Models\JenisBantuan;
 use App\Models\Penduduk;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Termwind\Components\Raw;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class KeluargaController extends Controller
 {
@@ -159,5 +163,52 @@ class KeluargaController extends Controller
         ];
         // dd($data);
         return view('dashboard.keluarga.anggota_keluarga.anggotaKeluarga', $data);
+    }
+
+    public function bansos()
+    {
+
+        $data = [
+            'title' => 'Sinforman | Bantuan Sosial',
+            'bantuans' => DB::table('detail_bantuans')
+                ->join('keluargas', 'detail_bantuans.keluarga_id', '=', 'keluargas.id')
+                ->join('jenis_bantuans', 'detail_bantuans.bantuan_id', '=', 'jenis_bantuans.id')
+                ->select('detail_bantuans.id', 'keluargas.no_kk', 'keluargas.kepala_keluarga', 'jenis_bantuans.bantuan', 'jenis_bantuans.tahapan', DB::raw('GROUP_CONCAT(jenis_bantuans.bantuan) as bansos'), DB::raw('count(keluargas.no_kk) as total'))
+                ->orderBy('keluargas.no_kk', 'desc')
+                ->groupBy('detail_bantuans.keluarga_id')
+                ->get()
+        ];
+
+        // dd($data);
+        return view('dashboard.bantuan.bansos.bansos', $data);
+    }
+
+    public function cetak()
+    {
+        $data =
+            [
+                'title' => 'Cetak Keluarga',
+                'keluargas' => Keluarga::all(),
+                'qrcode' => QrCode::eye('circle')->size(150)->generate('TTD, IMAM SYAHRONI (ALPHA 2022) SISTEM INFORMASI 2018, Untuk Keluarga')
+            ];
+
+        return view('cetak.cetakKeluarga', $data);
+    }
+
+    public function cetakKK(Keluarga $no_kk)
+    {
+        $data = [
+            'title' => 'Sinforman | Detail Keluarga',
+            'keluargas' => DB::table('keluargas')->select('keluargas.*')->where('no_kk', $no_kk['no_kk'])->get(),
+            'anggotaKeluargas' => DB::table('detail_keluargas')
+                ->join('keluargas', 'detail_keluargas.keluarga_id', '=', 'keluargas.id')
+                ->join('penduduks', 'detail_keluargas.penduduk_id', '=', 'penduduks.id')
+                ->select('detail_keluargas.*', 'keluargas.*', 'penduduks.*')->where('keluarga_id', $no_kk['id'])->get(),
+            'qrcode' => QrCode::eye('circle')->size(100)->generate('TTD, IMAM SYAHRONI (ALPHA 2022) SISTEM INFORMASI 2018, Untuk Keluarga')
+        ];
+
+        // dd($data);
+
+        return view('cetak.cetakKK', $data);
     }
 }

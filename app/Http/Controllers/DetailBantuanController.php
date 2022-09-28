@@ -10,6 +10,7 @@ use App\Models\Keluarga;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DetailBantuanController extends Controller
 {
@@ -132,5 +133,23 @@ class DetailBantuanController extends Controller
         DetailBantuan::destroy($detailBantuan->id);
         Alert::toast('Data has ben deleted', 'success');
         return redirect('/detailBantuan');
+    }
+
+    public function cetak()
+    {
+        $data = [
+            'title' => 'Sinforman | Bantuan Sosial',
+            'bantuans' => DB::table('detail_bantuans')
+                ->join('keluargas', 'detail_bantuans.keluarga_id', '=', 'keluargas.id')
+                ->join('jenis_bantuans', 'detail_bantuans.bantuan_id', '=', 'jenis_bantuans.id')
+                ->select('detail_bantuans.id', 'keluargas.no_kk', 'keluargas.kepala_keluarga', 'jenis_bantuans.bantuan', 'jenis_bantuans.tahapan', DB::raw('GROUP_CONCAT(jenis_bantuans.bantuan) as bansos'), DB::raw('count(keluargas.no_kk) as total'))
+                ->orderBy('keluargas.no_kk', 'desc')
+                ->groupBy('detail_bantuans.keluarga_id')
+                ->get(),
+            'qrcode' => QrCode::eye('circle')->size(150)->generate('TTD, IMAM SYAHRONI (ALPHA 2022) SISTEM INFORMASI 2018, Untuk bantuan')
+        ];
+
+        // dd($data);
+        return view('cetak.cetakBantuan', $data);
     }
 }

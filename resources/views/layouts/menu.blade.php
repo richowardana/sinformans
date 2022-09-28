@@ -37,28 +37,32 @@
             </ul>
         </li>
 
+        <li class="nav-heading">Bantual Sosial</li>
+
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('jenisBantuan*') || Request::is('detailBantuan*') ? '' : 'collapsed' }}"
+            <a class="nav-link {{ Request::is('jenisBantuan*') || Request::is('detailBantuan*') || Request::is('bansos*') ?  '' : 'collapsed' }}"
                 data-bs-target="#bantuanSosial" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i>
                 <span>Bantuan</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="bantuanSosial"
-                class="nav-content {{ Request::is('jenisBantuan*') || Request::is('detailBantuan*') ? '' : 'collapse' }} "
+                class="nav-content {{ Request::is('jenisBantuan*') || Request::is('detailBantuan*') || Request::is('bansos*') ? '' : 'collapse' }} "
                 data-bs-parent="#bantuanSosial">
+                <li>
+                    <a href="/bansos" class="{{ Request::is('bansos*') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i>
+                        <span>Bansos</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="/detailBantuan" class="{{ Request::is('detailBantuan*') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i>
-                        <span>Penerima Per-keluarga</span>
+                        <span>Detail Bantuan</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/penerimaBantuan">
-                        <i class="bi bi-circle"></i>
-                        <span>Penerima Per-Individu</span>
-                    </a>
-                </li>
+
                 <li>
                     <a href="/jenisBantuan" class="{{ Request::is('jenisBantuan*') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i>
@@ -67,6 +71,6 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-heading">Kependudukan</li>
+
     </ul>
 </aside>

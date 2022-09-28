@@ -19,26 +19,27 @@
 
 
                 <div class="percetakan">
-                    <button class="btn btn-sm btn-primary rounded-pill">
+                    {{-- <button class="btn btn-sm btn-primary rounded-pill">
                         <div class="icon text-white">
                             <i class="bi bi-file-earmark-pdf"></i>
                             Pdf
                         </div>
-                    </button>
+                    </button> --}}
 
-                    <button class="btn btn-sm btn-primary rounded-pill">
+                    {{-- <button class="btn btn-sm btn-primary rounded-pill">
                         <div class="icon text-white">
                             <i class="bi bi-download"></i>
                             Excel
                         </div>
-                    </button>
-
-                    <button class="btn btn-sm btn-primary rounded-pill">
-                        <div class="icon text-white">
-                            <i class="bi bi-printer"></i>
-                            Print
-                        </div>
-                    </button>
+                    </button> --}}
+                    <a href="/cetakPenduduk">
+                        <button class="btn btn-sm btn-primary rounded-pill">
+                            <div class="icon text-white">
+                                <i class="bi bi-printer"></i>
+                                Print
+                            </div>
+                        </button>
+                    </a>
                 </div>
                 <div class="table-responsive">
                     <table class="table datatable">
@@ -54,9 +55,9 @@
                         <tbody>
                             @foreach ($penduduks as $penduduk)
                             <tr>
-                                <td style="width: 12em">{{ $penduduk->nik }}</td>
+                                <td style="width: 12em" class="text-primary fw-bolder">{{ $penduduk->nik }}</td>
                                 <td style="width: 17em">{{ $penduduk->nama }}</td>
-                                <td style="width: 5em">{{ $penduduk->jenis_kelamin }}</td>
+                                <td style="width: 7em">{{ $penduduk->jenis_kelamin }}</td>
                                 <td>{{ $penduduk->pekerjaan }}</td>
                                 <td>
                                     <div class="dropdown">

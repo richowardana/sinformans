@@ -16,26 +16,6 @@
                         </button>
                     </a>
 
-                    <button class="btn btn-sm btn-primary rounded-pill float-end ms-1">
-                        <div class="icon text-white">
-                            <i class="bi bi-file-earmark-pdf"></i>
-                            Pdf
-                        </div>
-                    </button>
-
-                    <button class="btn btn-sm btn-primary rounded-pill float-end ms-1">
-                        <div class="icon text-white">
-                            <i class="bi bi-download"></i>
-                            Excel
-                        </div>
-                    </button>
-
-                    <button class="btn btn-sm btn-primary rounded-pill float-end ms-1">
-                        <div class="icon text-white">
-                            <i class="bi bi-printer"></i>
-                            Print
-                        </div>
-                    </button>
                 </h5>
                 <table class="table table-sm datatable">
                     <thead>
@@ -54,7 +34,20 @@
                             <td>{{ $detailBantuan->no_kk . ' - ' . $detailBantuan->kepala_keluarga }}</td>
                             <td>{{ $detailBantuan->bantuan }}</td>
                             <td>
-                                cek
+                                @if ($detailBantuan->tahapan == 1 && $detailBantuan->tahap_1 == null)
+                                Belum diambil
+                                @elseif ($detailBantuan->tahapan == 1 && $detailBantuan->tahap_1 != null)
+                                Selesai
+                                @elseif ($detailBantuan->tahapan == 2 && $detailBantuan->tahap_1 == null &&
+                                $detailBantuan->tahap_2 == null)
+                                Belum diambil
+                                @elseif ($detailBantuan->tahapan == 2 && $detailBantuan->tahap_1 != null &&
+                                $detailBantuan->tahap_2 == null)
+                                Tahap 1
+                                @elseif ($detailBantuan->tahapan == 2 && $detailBantuan->tahap_1 != null &&
+                                $detailBantuan->tahap_2 != null)
+                                Selesai
+                                @endif
                             </td>
                             <td>
                                 <table>

@@ -56,7 +56,7 @@
                 <label for="tahap_1" class="form-label">Tahap 1</label>
                 <input type="date" class="form-control @error('tahap_1')
                     is-invalid
-                @enderror" id="tahap_1" name="tahap_1" value="{{ old('tahap_1') }}">
+                @enderror" id="tahap_1" name="tahap_1" value="{{ old('tahap_1', $data->tahap_1) }}">
                 @error('tahap_1')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -69,7 +69,7 @@
                 <label for="tahap_2" class="form-label">Tahap 2</label>
                 <input type="date" class="form-control @error('tahap_2')
                     is-invalid
-                @enderror" id="tahap_2" name="tahap_2" value="{{ old('tahap_2') }}">
+                @enderror" id="tahap_2" name="tahap_2" value="{{ old('tahap_2', $data->tahap_2) }}">
                 @error('tahap_2')
                 <div class="invalid-feedback">
                     {{ $message }}

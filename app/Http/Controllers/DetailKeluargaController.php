@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailKeluarga;
 use App\Http\Requests\StoreDetailKeluargaRequest;
 use App\Http\Requests\UpdateDetailKeluargaRequest;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DetailKeluargaController extends Controller
