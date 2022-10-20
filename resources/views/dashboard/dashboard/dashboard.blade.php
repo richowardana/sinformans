@@ -44,7 +44,7 @@
     <div class="col-xxl-4 col-md-4">
         <div class="card info-card sales-card">
             <div class="card-body">
-                <h5 class="card-title">Bantuan Diberikan<span>| Total</span></h5>
+                <h5 class="card-title">Bantuan Diberikan <span>| Total</span></h5>
                 <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i
                             class="bi bi-archive-fill" style="font-size: 2em"></i></div>
